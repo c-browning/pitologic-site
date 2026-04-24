@@ -9,23 +9,13 @@
 	"assets": {
 		"directory": "."
 	},
-	"env": {
-		"production": {
-			"kv_namespaces": [
-				{
-					"binding": "NOTIFY_KV",
-					"id": ""
-				}
-			]
-		}
-	},
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
 	"kv_namespaces": [
 		{
 			"binding": "NOTIFY_KV",
 			"id": "ce2a0adbdbdb436cb970b984651a7a8a"
 		}
+	],
+	"compatibility_flags": [
+		"nodejs_compat"
 	]
 }

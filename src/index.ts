@@ -1,5 +1,7 @@
 export interface Env {
   NOTIFY_KV: KVNamespace;
+  __STATIC_CONTENT: any;
+  __STATIC_CONTENT_MANIFEST: string;
 }
 
 export default {
@@ -40,8 +42,27 @@ export default {
 
         return jsonResponse({ message: 'Thanks for signing up!' }, 200);
       } catch (error) {
+        console.error('Error:', error);
         return jsonResponse({ error: 'Failed to process request' }, 500);
       }
+    }
+
+    // Serve static files (index.html for root)
+    let pathname = url.pathname;
+    if (pathname === '/') {
+      pathname = '/index.html';
+    }
+
+    try {
+      // Try to get the file from the file system
+      const response = await fetch(new URL(pathname, request.url), {
+        cf: { cacheEverything: true } as any,
+      });
+      if (response.status === 200) {
+        return response;
+      }
+    } catch (e) {
+      // Fall through to 404
     }
 
     // Fallback for other routes

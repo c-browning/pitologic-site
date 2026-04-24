@@ -1,13 +1,10 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "pitologic-site",
-	"main": "src/index.ts",
+	"type": "javascript",
 	"compatibility_date": "2026-04-24",
 	"observability": {
 		"enabled": true
-	},
-	"assets": {
-		"directory": "."
 	},
 	"kv_namespaces": [
 		{

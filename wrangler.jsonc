@@ -1,18 +1,31 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "pitologic-site",
-  "main": "src/index.ts",
-  "compatibility_date": "2026-04-24",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": "."
-  },
-  "kv_namespaces": [
-    { "binding": "NOTIFY_KV", "id": "notify-emails", "preview_id": "notify-emails-preview" }
-  ],
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "pitologic-site",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-04-24",
+	"observability": {
+		"enabled": true
+	},
+	"assets": {
+		"directory": "."
+	},
+	"env": {
+		"production": {
+			"kv_namespaces": [
+				{
+					"binding": "NOTIFY_KV",
+					"id": ""
+				}
+			]
+		}
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"kv_namespaces": [
+		{
+			"binding": "NOTIFY_KV",
+			"id": "ce2a0adbdbdb436cb970b984651a7a8a"
+		}
+	]
 }

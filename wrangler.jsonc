@@ -6,6 +6,9 @@
 	"observability": {
 		"enabled": true
 	},
+	"assets": {
+		"directory": "."
+	},
 	"kv_namespaces": [
 		{
 			"binding": "NOTIFY_KV",

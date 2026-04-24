@@ -168,9 +168,50 @@
     In development
   </div>
   <div class="form">
-    <input type="email" placeholder="your@email.com">
-    <button>Notify me</button>
+    <input id="emailInput" type="email" placeholder="your@email.com">
+    <button id="notifyBtn" type="button">Notify me</button>
   </div>
+  <p id="feedback" class="note" style="display:none; margin-top:-20px; color: var(--text);"></p>
+  <script>
+    const emailInput = document.getElementById('emailInput');
+    const notifyBtn = document.getElementById('notifyBtn');
+    const feedback = document.getElementById('feedback');
+
+    notifyBtn.addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      notifyBtn.disabled = true;
+      notifyBtn.textContent = 'Sending...';
+      feedback.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+        feedback.textContent = data.message || data.error || 'Done!';
+        feedback.style.color = response.ok ? 'var(--accent)' : '#ff6b6b';
+        feedback.style.display = 'block';
+
+        if (response.ok) emailInput.value = '';
+      } catch (error) {
+        feedback.textContent = 'Error occurred. Please try again.';
+        feedback.style.color = '#ff6b6b';
+        feedback.style.display = 'block';
+      } finally {
+        notifyBtn.disabled = false;
+        notifyBtn.textContent = 'Notify me';
+      }
+    });
+
+    emailInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') notifyBtn.click();
+    });
+  </script>
   <p class="note">© 2026 Pitot Logic LLC</p>
 </div>
 </body>

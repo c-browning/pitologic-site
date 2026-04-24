@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pitologic-site",
+  "main": "src/index.ts",
   "compatibility_date": "2026-04-24",
   "observability": {
     "enabled": true
@@ -8,6 +9,9 @@
   "assets": {
     "directory": "."
   },
+  "kv_namespaces": [
+    { "binding": "NOTIFY_KV", "id": "notify-emails", "preview_id": "notify-emails-preview" }
+  ],
   "compatibility_flags": [
     "nodejs_compat"
   ]

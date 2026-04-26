@@ -93,42 +93,6 @@
     background: var(--accent);
     animation: pulse 2.4s ease-in-out infinite;
   }
-  .form {
-    display: flex;
-    gap: 0;
-    width: 100%;
-    max-width: 360px;
-  }
-  .form input {
-    flex: 1;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--dim);
-    border-right: none;
-    border-radius: 2px 0 0 2px;
-    padding: 12px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form input::placeholder { color: var(--muted); }
-  .form input:focus { border-color: #2d5a6e; }
-  .form button {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 0 2px 2px 0;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-  .form button:hover { background: #5ab0d4; }
   .note {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -167,51 +131,6 @@
     <div class="status-dot"></div>
     In development
   </div>
-  <div class="form">
-    <input id="emailInput" type="email" placeholder="your@email.com">
-    <button id="notifyBtn" type="button">Notify me</button>
-  </div>
-  <p id="feedback" class="note" style="display:none; margin-top:-20px; color: var(--text);"></p>
-  <script>
-    const emailInput = document.getElementById('emailInput');
-    const notifyBtn = document.getElementById('notifyBtn');
-    const feedback = document.getElementById('feedback');
-
-    notifyBtn.addEventListener('click', async () => {
-      const email = emailInput.value.trim();
-      if (!email) return;
-
-      notifyBtn.disabled = true;
-      notifyBtn.textContent = 'Sending...';
-      feedback.style.display = 'none';
-
-      try {
-        const response = await fetch('/api/notify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
-
-        const data = await response.json();
-        feedback.textContent = data.message || data.error || 'Done!';
-        feedback.style.color = response.ok ? 'var(--accent)' : '#ff6b6b';
-        feedback.style.display = 'block';
-
-        if (response.ok) emailInput.value = '';
-      } catch (error) {
-        feedback.textContent = 'Error occurred. Please try again.';
-        feedback.style.color = '#ff6b6b';
-        feedback.style.display = 'block';
-      } finally {
-        notifyBtn.disabled = false;
-        notifyBtn.textContent = 'Notify me';
-      }
-    });
-
-    emailInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') notifyBtn.click();
-    });
-  </script>
   <p class="note">© 2026 Pitot Logic LLC</p>
 </div>
 </body>

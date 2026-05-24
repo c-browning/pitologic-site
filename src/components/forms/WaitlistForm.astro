@@ -1,0 +1,183 @@
+---
+interface Props {
+  source?: string;
+  variant?: 'inline' | 'stacked' | 'compact';
+  showMessage?: boolean;
+  label?: string;
+  cta?: string;
+}
+const {
+  source = 'waitlist',
+  variant = 'inline',
+  showMessage = false,
+  label = 'Email address',
+  cta = 'Join the waitlist',
+} = Astro.props;
+
+const id = `waitlist-${Math.random().toString(36).slice(2, 8)}`;
+---
+<form class:list={['waitlist', `waitlist-${variant}`]} data-source={source} data-waitlist novalidate>
+  <div class="field">
+    <label for={`${id}-email`} class="sr-only">{label}</label>
+    <input
+      type="email"
+      id={`${id}-email`}
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="you@company.com"
+      spellcheck="false"
+    />
+    <button type="submit" class="btn btn-primary submit">
+      <span class="submit-label">{cta}</span>
+    </button>
+  </div>
+  {showMessage && (
+    <div class="field-stack">
+      <label for={`${id}-msg`} class="sr-only">Tell us about your project (optional)</label>
+      <textarea
+        id={`${id}-msg`}
+        name="message"
+        rows="3"
+        placeholder="Tell us about your project (optional)"
+      ></textarea>
+    </div>
+  )}
+  <p class="status" data-status role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-waitlist]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('[data-status]');
+    const submit = form.querySelector<HTMLButtonElement>('button[type=submit]');
+    const submitLabel = submit?.querySelector<HTMLElement>('.submit-label');
+    const originalLabel = submitLabel?.textContent ?? '';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!status || !submit || !submitLabel) return;
+
+      const fd = new FormData(form);
+      const payload: Record<string, string> = {
+        email: String(fd.get('email') || '').trim(),
+        source: form.dataset.source || 'waitlist',
+      };
+      const message = String(fd.get('message') || '').trim();
+      if (message) payload.message = message;
+
+      if (!payload.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+        status.textContent = 'Please enter a valid email address.';
+        status.dataset.state = 'error';
+        return;
+      }
+
+      submit.disabled = true;
+      submitLabel.textContent = 'Sending…';
+      status.textContent = '';
+      delete status.dataset.state;
+
+      try {
+        const res = await fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = (await res.json()) as { message?: string; error?: string };
+        if (res.ok) {
+          status.textContent = data.message || "You're on the list.";
+          status.dataset.state = 'success';
+          form.reset();
+        } else {
+          status.textContent = data.error || 'Something went wrong. Please try again.';
+          status.dataset.state = 'error';
+        }
+      } catch {
+        status.textContent = 'Network error. Please try again.';
+        status.dataset.state = 'error';
+      } finally {
+        submit.disabled = false;
+        submitLabel.textContent = originalLabel;
+      }
+    });
+  });
+</script>
+
+<style>
+  .waitlist { display: flex; flex-direction: column; gap: var(--space-s); width: 100%; }
+  .field {
+    display: flex;
+    gap: var(--space-2xs);
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-s);
+    padding: var(--space-3xs);
+    align-items: stretch;
+  }
+  .field input[type=email] {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    padding: 0.75em 1em;
+    font-size: var(--step-0);
+    color: var(--ink);
+    min-width: 0;
+  }
+  .field input[type=email]::placeholder { color: var(--ink-mute); }
+  .field input[type=email]:focus { outline: none; }
+  .submit { border-radius: 2px; }
+  .field-stack textarea {
+    width: 100%;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-s);
+    padding: 0.85em 1em;
+    background: var(--paper);
+    font-family: var(--font-text);
+    font-size: var(--step--1);
+    resize: vertical;
+    min-height: 80px;
+  }
+  .status {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.05em;
+    min-height: 1.2em;
+    color: var(--ink-mute);
+  }
+  .status[data-state="success"] { color: var(--success); }
+  .status[data-state="error"] { color: var(--danger); }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Stacked variant — vertical layout for the footer or contact */
+  .waitlist-stacked .field { flex-direction: column; padding: 0; border: 0; background: transparent; gap: var(--space-s); }
+  .waitlist-stacked .field input[type=email] { border: 1px solid var(--ink); border-radius: var(--radius-s); padding: 0.85em 1em; }
+  .waitlist-stacked .submit { align-self: flex-start; }
+
+  /* Compact — small inline form for the footer */
+  .waitlist-compact .field { padding: 0; border-color: var(--rule); }
+  .waitlist-compact .field input[type=email] { padding: 0.6em 0.8em; font-size: var(--step--1); }
+  .waitlist-compact .submit { padding: 0.5em 1em; font-size: var(--step--2); }
+
+  /* Surface-ink overrides */
+  :global(.surface-ink) .field {
+    background: rgba(250, 247, 241, 0.06);
+    border-color: rgba(244, 239, 230, 0.3);
+  }
+  :global(.surface-ink) .field input[type=email] { color: var(--paper); }
+  :global(.surface-ink) .field input[type=email]::placeholder { color: rgba(244, 239, 230, 0.55); }
+  :global(.surface-ink) .submit { background: var(--accent); border-color: var(--accent); }
+  :global(.surface-ink) .status { color: rgba(244, 239, 230, 0.7); }
+
+  @media (max-width: 600px) {
+    .field { flex-direction: column; padding: 0; border: 0; background: transparent; gap: var(--space-2xs); }
+    .field input[type=email] { border: 1px solid var(--ink); border-radius: var(--radius-s); padding: 0.85em 1em; }
+    .submit { width: 100%; justify-content: center; }
+  }
+</style>

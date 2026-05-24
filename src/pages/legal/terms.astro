@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+
+const lastUpdated = '2026-05-19';
+---
+<BaseLayout
+  title="Terms"
+  description="Pitot Logic terms of use for the marketing site. The product (Runway) is governed by a separate subscription agreement."
+  noindex
+>
+  <Section tone="paper">
+    <Container width="narrow">
+      <article class="doc stack-l">
+        <header>
+          <p class="eyebrow">Legal · Terms</p>
+          <h1 class="display step-4">Terms of use</h1>
+          <p class="updated">Last updated: {lastUpdated}</p>
+        </header>
+
+        <section>
+          <h2>About these terms</h2>
+          <p>
+            These terms govern your use of <strong>pitotlogic.com</strong>. Use of the Runway
+            product itself is governed by a separate subscription agreement signed at the time of
+            onboarding.
+          </p>
+        </section>
+
+        <section>
+          <h2>Acceptable use</h2>
+          <p>
+            Don't attempt to access systems you're not authorized to access. Don't submit
+            information through the waitlist or contact forms that isn't yours to share. Don't
+            scrape the site for purposes other than ordinary indexing.
+          </p>
+        </section>
+
+        <section>
+          <h2>No warranty</h2>
+          <p>
+            This site is provided as-is. Statements about the Runway product describe current and
+            planned functionality and may evolve. Nothing on this site constitutes a contractual
+            commitment.
+          </p>
+        </section>
+
+        <section>
+          <h2>Trademarks</h2>
+          <p>
+            "Pitot Logic" and "Runway" (as used here for the operational-readiness platform) are
+            trademarks of Pitot Logic LLC. Microsoft, Azure, Entra, Outlook, SharePoint, Teams,
+            and related marks are trademarks of Microsoft Corporation.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            Pitot Logic LLC. For legal questions:
+            <a class="link" href="mailto:legal@pitotlogic.com">legal@pitotlogic.com</a>.
+          </p>
+        </section>
+      </article>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-4 { font-size: var(--step-4); }
+  .doc { max-width: 42rem; }
+  .updated { font-family: var(--font-mono); font-size: var(--step--2); color: var(--ink-mute); margin-top: var(--space-2xs); }
+  .doc section { margin-top: var(--space-l); }
+  .doc h2 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; margin-bottom: var(--space-s); }
+  .doc p { color: var(--ink-soft); margin-bottom: var(--space-s); line-height: 1.6; }
+</style>

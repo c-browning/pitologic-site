@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import PillarCard from '../../components/marketing/PillarCard.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+
+const pillars = [
+  {
+    num: '01',
+    title: 'In-context editing',
+    href: '/product/ease-of-use',
+    body: 'Blade panels open over the screen you\'re on. Open a milestone, edit a risk on top of it, discuss it on a third blade — never lose your place.',
+  },
+  {
+    num: '02',
+    title: 'Connected data',
+    href: '/product/data-fabric',
+    body: 'Risks, issues, tasks, milestones, training, procedures, trials, and spec rows all link to each other with typed relationships and offsets.',
+  },
+  {
+    num: '03',
+    title: 'Smart scheduling',
+    href: '/product/schedule',
+    body: 'The offset engine cascades dates downstream. Every shifted activity shows the driving predecessor that pushed it.',
+  },
+  {
+    num: '04',
+    title: 'AI project setup',
+    href: '/product/ai-setup',
+    body: 'Upload your ConOps or spec PDF. Get one-click suggestions for functional areas, stakeholders, training items, and spec rows.',
+  },
+  {
+    num: '05',
+    title: 'Microsoft 365 native',
+    href: '/integrations/microsoft',
+    body: 'Entra SSO, Outlook calendar sync, SharePoint documents, Teams channel alerts routed per functional area.',
+  },
+  {
+    num: '06',
+    title: 'Built for ORAT',
+    body: 'An 8-phase lifecycle, zone readiness scoring, procedure workflow gates, training tracking, trial execution. Not a generic PM tool — a readiness tool.',
+  },
+];
+---
+<BaseLayout
+  title="Product"
+  description="The six pillars of Runway: in-context editing, connected data, smart scheduling, AI project setup, Microsoft 365 native, and an ORAT-specific feature set."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Product</p>
+        <h1 class="display step-5">Six pillars. One workspace. Built around how ORAT teams actually work.</h1>
+        <p class="lede">
+          Runway is the only platform purpose-built for Operational Readiness, Activation
+          &amp; Transition on complex handovers. Here's what's in the box.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <div class="grid">
+        {pillars.map((p) => (
+          <PillarCard num={p.num} title={p.title} href={p.href}>
+            <p>{p.body}</p>
+          </PillarCard>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Walk through the product</p>
+        <h2 class="display step-3">Add your email — we'll show you the parts that fit your project.</h2>
+        <WaitlistForm source="product" cta="Request a walkthrough" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-l);
+  }
+  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

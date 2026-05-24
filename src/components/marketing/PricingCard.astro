@@ -1,0 +1,96 @@
+---
+interface Feature {
+  text: string;
+  hint?: string;
+}
+interface Props {
+  tier: string;
+  audience: string;
+  price: string;
+  priceUnit?: string;
+  features: Feature[];
+  cta: string;
+  href: string;
+  highlight?: boolean;
+}
+const { tier, audience, price, priceUnit, features, cta, href, highlight = false } = Astro.props;
+---
+<article class:list={['plan', { highlight }]}>
+  <header class="head">
+    <p class="eyebrow">{tier}</p>
+    <p class="audience">{audience}</p>
+  </header>
+  <div class="price">
+    <span class="figure">{price}</span>
+    {priceUnit && <span class="unit">{priceUnit}</span>}
+  </div>
+  <ul class="features">
+    {features.map((f) => (
+      <li>
+        <span class="check" aria-hidden="true">✓</span>
+        <span>{f.text}{f.hint && <em>{f.hint}</em>}</span>
+      </li>
+    ))}
+  </ul>
+  <a href={href} class:list={['btn', highlight ? 'btn-primary' : 'btn-secondary', 'cta']}>{cta}</a>
+</article>
+
+<style>
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    padding: var(--space-xl);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-m);
+    position: relative;
+  }
+  .plan.highlight {
+    border-color: var(--ink);
+    box-shadow: 0 14px 40px -20px rgba(11, 42, 74, 0.3);
+  }
+  .plan.highlight::before {
+    content: 'Best fit';
+    position: absolute;
+    top: -10px;
+    left: var(--space-xl);
+    background: var(--accent);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .audience {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-top: var(--space-2xs);
+  }
+  .price { display: flex; align-items: baseline; gap: var(--space-2xs); }
+  .figure {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .unit { color: var(--ink-mute); font-size: var(--step--1); }
+  .features { display: flex; flex-direction: column; gap: var(--space-2xs); }
+  .features li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .features em { font-style: normal; color: var(--ink-mute); font-size: var(--step--2); display: block; margin-top: 2px; }
+  .check { color: var(--accent); font-weight: 700; }
+  .cta { margin-top: auto; justify-content: center; }
+</style>

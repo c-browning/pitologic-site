@@ -1,0 +1,43 @@
+---
+interface Props {
+  direction?: 'right' | 'down' | 'diag';
+  label?: string;
+  length?: number;
+  color?: string;
+}
+const { direction = 'right', label, length = 80, color = 'var(--accent)' } = Astro.props;
+---
+<span class:list={['dep-arrow', `dep-${direction}`]} style={`--len: ${length}px; --c: ${color};`}>
+  {label && <span class="dep-label">{label}</span>}
+  <svg
+    width={length}
+    height="20"
+    viewBox={`0 0 ${length} 20`}
+    fill="none"
+    stroke={color}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <line x1="0" y1="10" x2={length - 8} y2="10" stroke-dasharray="3 3" />
+    <polyline points={`${length - 12} 5, ${length - 4} 10, ${length - 12} 15`} />
+  </svg>
+</span>
+
+<style>
+  .dep-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+  .dep-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c);
+  }
+  .dep-down { transform: rotate(90deg); }
+  .dep-diag { transform: rotate(35deg); }
+</style>

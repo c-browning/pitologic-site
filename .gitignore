@@ -4,3 +4,13 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# astro
+dist/
+.astro/
+
+# node
+node_modules/
+
+# OS
+.DS_Store

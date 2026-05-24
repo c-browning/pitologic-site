@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import LogicGate from '../components/graphics/LogicGate.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="About"
+  description="Pitot Logic builds Runway: the operational readiness platform we wished we'd had on the airport jobs. Instrument what's actually happening, not what's planned."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">About</p>
+        <h1 class="display step-5">We build the ORAT tool we wished we'd had on the airport jobs.</h1>
+        <p class="lede">
+          Pitot Logic is the company. Runway is the product. We make software for the people who
+          have to deliver day-one operations on time, on budget, and without burning out the team.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">Why "Pitot Logic"?</h2>
+        <div class="why">
+          <div class="gate"><LogicGate variant="and" size={48} color="var(--ink)" /></div>
+          <div>
+            <p>
+              A pitot tube is the small forward-facing probe on the nose of an aircraft. It measures
+              what's <em>actually</em> happening — airspeed under real conditions — not what was
+              planned for it on the ground.
+            </p>
+            <p>
+              Operational readiness has the same problem. The plan says one thing. The schedule
+              says another. The trade contractors are doing a third. The only way through is to
+              instrument what's actually happening and reconcile it constantly. That's the
+              instrument we wanted to be.
+            </p>
+            <p>
+              The "Logic" half is the AND-gate in our mark — a tiny reminder that ORAT runs on
+              dependencies. <em>This</em> and <em>this</em> have to both be true for the gate to
+              open. Skip one, and the day-one trial doesn't run.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">What we believe</h2>
+        <div class="beliefs">
+          <article>
+            <p class="bel-num">01</p>
+            <p class="bel-title">Software should reduce the lift, not add to it.</p>
+            <p>Every interaction in Runway is sized to the work it removes — not the work it adds. If a feature adds clicks without removing more, it doesn't ship.</p>
+          </article>
+          <article>
+            <p class="bel-num">02</p>
+            <p class="bel-title">Documents belong to the operator.</p>
+            <p>We never store your documents. They live in your SharePoint. When the construction team rolls off, the documents stay.</p>
+          </article>
+          <article>
+            <p class="bel-num">03</p>
+            <p class="bel-title">No-nonsense pricing.</p>
+            <p>Per project, not per seat. No surprise overages. Quotes that don't require a sales motion.</p>
+          </article>
+          <article>
+            <p class="bel-num">04</p>
+            <p class="bel-title">Earn the renewal.</p>
+            <p>Monthly billing is the default. Annual is a discount, not a lock-in. If we're not the right tool, we should make it easy to leave — including exports of everything.</p>
+          </article>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Built by an ORAT lead, for ORAT leads</p>
+        <h2 class="display step-3">Want to compare notes?</h2>
+        <WaitlistForm source="about" showMessage cta="Get in touch" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .block { max-width: 50rem; }
+  .block p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.55; }
+  .block p + p { margin-top: var(--space-s); }
+  .block em { font-style: italic; color: var(--ink); }
+
+  .why { display: grid; grid-template-columns: auto 1fr; gap: var(--space-l); align-items: start; }
+  .gate { padding-top: 4px; }
+  @media (max-width: 700px) { .why { grid-template-columns: 1fr; } }
+
+  .beliefs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-l); margin-top: var(--space-m); }
+  .beliefs article { padding: var(--space-l); background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius-m); }
+  .bel-num { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.1em; color: var(--accent); }
+  .bel-title { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; color: var(--ink); margin-block: var(--space-2xs); }
+  @media (max-width: 700px) { .beliefs { grid-template-columns: 1fr; } }
+
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

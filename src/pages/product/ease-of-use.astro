@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import FeatureSplit from '../../components/marketing/FeatureSplit.astro';
+import BladePanelMock from '../../components/marketing/BladePanelMock.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="In-context editing"
+  description="Runway's blade-panel architecture lets you open, edit, link, and discuss any record without leaving the screen you're on. Stack blades to navigate relationships without losing your place."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Pillar 01 · In-context editing</p>
+        <h1 class="display step-5">Open, edit, link, and discuss any record without leaving the screen you're on.</h1>
+        <p class="lede">
+          The traditional PM tool sends you on a scavenger hunt. Click a risk, lose your context.
+          Click a milestone, lose it again. Runway's blade-panel architecture is the antidote.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <FeatureSplit eyebrow="Blade panels" title="Edit anything from anywhere.">
+        <div slot="body">
+          <p>
+            Click a milestone on the timeline → a blade slides in with its details, links, discussion,
+            and history tabs. Click a linked risk on that blade → a second blade stacks on top.
+            Click a linked training item → a third stacks. Close one and you're back where you were.
+          </p>
+          <p>
+            Every blade auto-saves on field blur. ESC closes the top blade. No modals. No "save and
+            navigate." No accidental data loss.
+          </p>
+        </div>
+        <div slot="visual"><BladePanelMock /></div>
+      </FeatureSplit>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container>
+      <div class="row-list">
+        <article class="row-item">
+          <h3 class="row-title">My Work feed</h3>
+          <p>
+            One scrollable list of everything assigned to you across modules — risks, issues, tasks,
+            procedures, training events. Filter by overdue. Filter by type. Click an item, edit it
+            inline. The "where do I start today" question gets answered in one screen.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Inline status changes</h3>
+          <p>
+            Status badges are dropdowns. Due-date chips are date pickers. Assignee names open a
+            people-picker. No "edit mode." No save buttons. The whole app feels like a spreadsheet
+            you can actually live in.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Action dock</h3>
+          <p>
+            From any milestone, raise a risk or issue, notify the owner, or attach a SharePoint
+            document without leaving the blade. The action lives where the work is, not in a
+            top-bar menu three clicks away.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Stacked context</h3>
+          <p>
+            Stacked blades aren't just visual flair — they preserve every parent context. Navigate
+            five entities deep, then close them one by one back to where you started. The mental
+            stack and the visual stack match.
+          </p>
+        </article>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">See it for yourself</p>
+        <h2 class="display step-3">Static images can't capture how blades feel.</h2>
+        <p class="lede">Get a walkthrough.</p>
+        <WaitlistForm source="ease-of-use" cta="Request a walkthrough" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .row-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl) var(--space-2xl);
+  }
+  .row-item { display: flex; flex-direction: column; gap: var(--space-s); padding-top: var(--space-l); border-top: 1px solid var(--rule); }
+  .row-title { font-family: var(--font-display); font-size: var(--step-2); font-weight: 700; color: var(--ink); }
+  .row-item p { color: var(--ink-soft); }
+  @media (max-width: 800px) { .row-list { grid-template-columns: 1fr; } }
+  .cta { text-align: center; align-items: center; }
+  .cta .lede { text-align: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

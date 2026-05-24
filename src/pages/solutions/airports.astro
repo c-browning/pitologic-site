@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Airports"
+  description="Runway is built around the rhythm of airport openings: phased turnover, multiple consultants, regulatory gates, BHS commissioning, and live-ops trial cycles."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Solutions · Airports</p>
+        <h1 class="display step-5">Terminals, BHS, and transit handovers that have to land on a fixed date.</h1>
+        <p class="lede">
+          Airport openings are the canonical ORAT problem: dozens of consultants, hundreds of
+          trade interfaces, regulatory acceptance gates, and a fixed open-for-traffic date that
+          can't slip. Runway is built around that rhythm.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">What gets shipped pre-configured</h2>
+        <ul class="bullets">
+          <li><strong>Functional area libraries:</strong> passenger flow, BHS, concessions, wayfinding, IT &amp; comms, security checkpoints, gate operations, ground service equipment</li>
+          <li><strong>Stakeholder types:</strong> airline ops representatives, TSA coordinators, FBO managers, baggage commissioning agents, ATC liaisons</li>
+          <li><strong>Trial templates:</strong> baggage flow trials, passenger flow trials, fire-life-safety trials, irregular ops trials</li>
+          <li><strong>ORAT phase template:</strong> the 8-phase model pre-seeded with airport-typical durations and gate criteria</li>
+          <li><strong>Construction phase scoping:</strong> Concourse Construction, BHS Expansion, Transit Expansion — each scopable to its own consultant team</li>
+        </ul>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">The cascade that matters</h2>
+        <p>
+          The classic airport ORAT failure: BHS commissioning needs IT cutover. IT cutover needs
+          security wiring. Security wiring needs final ceiling close-out. Final close-out needs
+          the punch list. One slip on the punch list, and the entire trial schedule shifts —
+          but nobody knows by how much until someone manually walks the dependency tree.
+        </p>
+        <p>
+          Runway's offset engine walks it automatically. The trial that depended on BHS shows a
+          new date and a chevron pointing at the punch list as the driver. The team is having a
+          recovery conversation in minutes, not days.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">Why airport teams pick Runway</h2>
+        <ul class="reasons">
+          <li>
+            <strong>One workspace across the program.</strong> Concourse, BHS, and transit teams
+            share data without sharing keystrokes — each consultant scoped to their construction
+            phase, the program owner sees the rollup.
+          </li>
+          <li>
+            <strong>Trial execution that's actually usable on the floor.</strong> Objective-by-objective
+            pass / fail / blocked logging, attendee check-in, Excel export for the operations
+            handover packet.
+          </li>
+          <li>
+            <strong>Zone readiness on the floor plan.</strong> Click a concourse, see its
+            readiness percentage rolled up from linked activities. Hover for the blockers.
+          </li>
+          <li>
+            <strong>External ID for the cast of consultants.</strong> No procurement cycle for
+            new logins. Invite a contractor by email; Entra External ID handles the rest.
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Running an airport opening?</p>
+        <h2 class="display step-3">We'd like to talk to you specifically.</h2>
+        <WaitlistForm source="airports" showMessage cta="Get in touch" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .block { max-width: 50rem; }
+  .block p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.55; }
+  .bullets { display: flex; flex-direction: column; gap: var(--space-s); padding-left: var(--space-m); list-style: disc; color: var(--ink-soft); }
+  .reasons { display: flex; flex-direction: column; gap: var(--space-m); list-style: none; }
+  .reasons li { padding-left: var(--space-m); border-left: 2px solid var(--accent); color: var(--ink-soft); }
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

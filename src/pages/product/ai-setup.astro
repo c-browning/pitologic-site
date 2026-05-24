@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import FeatureSplit from '../../components/marketing/FeatureSplit.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="AI project setup"
+  description="Upload your ConOps or spec PDF. Runway's Claude-powered Project Assistant suggests functional areas, stakeholders, training, and spec rows as one-click recommendations."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Pillar 04 · AI project setup</p>
+        <h1 class="display step-5">Six weeks of setup becomes an afternoon.</h1>
+        <p class="lede">
+          Every new ORAT project starts with the same dreary lift: typing out functional areas,
+          stakeholders, training items, and spec rows from documents you already have. Runway's
+          Project Assistant reads those documents and proposes the library for you.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <FeatureSplit eyebrow="Project Assistant" title="Upload it. Accept what fits. Skip what doesn't.">
+        <div slot="body">
+          <p>
+            Upload your <strong>ConOps</strong>, <strong>master program</strong>, or <strong>specification PDF</strong>.
+            Runway's Project Assistant — backed by Anthropic's Claude — extracts and suggests:
+          </p>
+          <ul class="bullets">
+            <li>Functional areas (from your ConOps scenarios)</li>
+            <li>Space and facility types (from programming sections)</li>
+            <li>Stakeholder types (from the org chart)</li>
+            <li>Work item categories (from procedures and activities)</li>
+            <li>Specification sections and training requirements (from spec PDFs)</li>
+          </ul>
+          <p>
+            Each suggestion is a one-click "Add" recommendation, grouped by category. Reject what
+            doesn't apply. Accept what does. The library populates in minutes, not weeks.
+          </p>
+        </div>
+        <div slot="visual">
+          <div class="mock">
+            <div class="mock-head">
+              <span class="pill">Project Assistant</span>
+              <span class="status">acme-airport-c2.pdf · 142 pages · processed</span>
+            </div>
+            <div class="mock-body">
+              <p class="group">Functional areas <em>· 18 suggested</em></p>
+              <ul>
+                <li><span class="add">+</span>Baggage handling</li>
+                <li><span class="add">+</span>Passenger flow</li>
+                <li><span class="add">+</span>Concessions &amp; retail</li>
+                <li><span class="added">✓</span><s>Wayfinding</s> <em>added</em></li>
+              </ul>
+              <p class="group">Stakeholder types <em>· 24 suggested</em></p>
+              <ul>
+                <li><span class="add">+</span>BHS commissioning agent</li>
+                <li><span class="add">+</span>Airline ops representative</li>
+                <li><span class="add">+</span>TSA coordinator</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </FeatureSplit>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container>
+      <div class="row-list">
+        <article class="row-item">
+          <h3 class="row-title">Six suggestion modules</h3>
+          <p>
+            Functional areas, space types, facility types, stakeholder types, work item categories,
+            spec sections — each runs as its own pass over your documents, so suggestions land
+            grouped and contextual.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Per-tenant token budgets</h3>
+          <p>
+            Each plan ships with a monthly AI token allocation: 100K (Starter), 500K (Standard),
+            2M+ (Enterprise). Usage is visible in admin. No surprise bills.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Excel fallback</h3>
+          <p>
+            For teams that already maintain spec or training requirements in Excel, the same
+            ingestion pipeline accepts XLSX. AI handles unstructured docs; Excel handles
+            structured ones. Both feed the same library.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Library candidate review</h3>
+          <p>
+            AI-suggested entries that get widely accepted across tenants get promoted into a shared
+            library so the next project starts even further ahead. Platform admins curate the
+            global library from real signal, not guesses.
+          </p>
+        </article>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Start with a working library</p>
+        <h2 class="display step-3">Skip the six weeks of typing.</h2>
+        <WaitlistForm source="ai-setup" cta="Request a walkthrough" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .bullets { display: flex; flex-direction: column; gap: var(--space-2xs); margin-block: var(--space-s); padding-left: var(--space-m); list-style: disc; color: var(--ink-soft); }
+
+  .mock {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    box-shadow: 0 24px 50px -25px rgba(11, 42, 74, 0.4);
+  }
+  .mock-head {
+    padding: var(--space-s) var(--space-m);
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mock-head .pill {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--accent);
+    color: var(--paper);
+    width: fit-content;
+  }
+  .status { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); }
+  .mock-body { padding: var(--space-m); display: flex; flex-direction: column; gap: var(--space-m); }
+  .group {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .group em { font-style: normal; color: var(--accent); }
+  .mock-body ul { display: flex; flex-direction: column; gap: 4px; }
+  .mock-body li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: 6px 8px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-s);
+    font-size: 13px;
+  }
+  .add, .added {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .add { border: 1px solid var(--accent); color: var(--accent); }
+  .added { background: var(--success); color: var(--paper); }
+  .mock-body s { color: var(--ink-mute); text-decoration: line-through; }
+  .mock-body em { font-style: normal; color: var(--success); font-size: 11px; margin-left: auto; }
+
+  .row-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-xl) var(--space-2xl); }
+  .row-item { display: flex; flex-direction: column; gap: var(--space-s); padding-top: var(--space-l); border-top: 1px solid var(--rule); }
+  .row-title { font-family: var(--font-display); font-size: var(--step-2); font-weight: 700; }
+  .row-item p { color: var(--ink-soft); }
+  @media (max-width: 800px) { .row-list { grid-template-columns: 1fr; } }
+
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

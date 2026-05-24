@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import Hero from '../components/marketing/Hero.astro';
+import BladePanelMock from '../components/marketing/BladePanelMock.astro';
+import LifecycleRibbon from '../components/marketing/LifecycleRibbon.astro';
+import PillarCard from '../components/marketing/PillarCard.astro';
+import PricingCard from '../components/marketing/PricingCard.astro';
+import IntegrationLogo from '../components/marketing/IntegrationLogo.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+import EntityGlyph from '../components/graphics/EntityGlyph.astro';
+---
+<BaseLayout
+  title="Operational readiness without the spreadsheet sprawl"
+  description="Runway by Pitot Logic is the ORAT platform that lets your team see every risk, dependency, training, and trial in one place — and edit anything from anywhere in the app."
+>
+  <Section tone="paper" pad="default">
+    <Container width="wide">
+      <Hero eyebrow="Runway by Pitot Logic">
+        <h1 slot="headline" class="display step-6">Operational readiness without the spreadsheet sprawl.</h1>
+        <p slot="sub" class="lede">
+          Runway is the ORAT platform purpose-built for complex handover —
+          terminals, resorts, hospitals, data centers. One workspace for risks,
+          schedules, training, procedures, and trials. Edit anything from anywhere.
+          AI handles the setup boilerplate.
+        </p>
+        <div slot="cta">
+          <WaitlistForm source="hero" cta="Join the waitlist" />
+        </div>
+        <p slot="footnote" class="footnote">
+          Shipping with a hand-picked first cohort. No spam — just one email when we open it up.
+        </p>
+        <div slot="visual"><BladePanelMock /></div>
+      </Hero>
+    </Container>
+  </Section>
+
+  <Section tone="cream" pad="tight">
+    <Container width="wide">
+      <header class="ribbon-head">
+        <p class="eyebrow">The 8-phase ORAT lifecycle</p>
+        <h2 class="display step-3">From ConOps to day one — one tool, one timeline.</h2>
+      </header>
+      <LifecycleRibbon />
+      <p class="ribbon-foot">Specs, equipment, training, procedures, and trials are all phase-tagged. Filter to today's phase. Roll up to the program.</p>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <header class="three-up-head">
+        <p class="eyebrow">Why teams switch</p>
+        <h2 class="display step-3">A workspace that thinks like an ORAT lead.</h2>
+      </header>
+      <div class="three-up">
+        <PillarCard num="01" title="One workspace. No tabs." href="/product/ease-of-use">
+          <p>Open a milestone, edit a risk on top of it, discuss it on a third blade — all without losing your place. My Work feeds your assigned items as a single list, color-coded by type.</p>
+        </PillarCard>
+        <PillarCard num="02" title="Everything connects." href="/product/data-fabric">
+          <p>Risks, issues, tasks, trainings, procedures, and trials link to milestones with typed relationships. Change a date upstream, and downstream cascades — with a chevron showing what drove it.</p>
+        </PillarCard>
+        <PillarCard num="03" title="AI handles the boilerplate." href="/product/ai-setup">
+          <p>Upload your ConOps or spec PDF. Runway suggests functional areas, stakeholders, training items, and spec rows. Accept what fits. Skip what doesn't. Six weeks of setup becomes an afternoon.</p>
+        </PillarCard>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container>
+      <div class="pitfalls-teaser">
+        <div class="copy">
+          <p class="eyebrow">The five pitfalls</p>
+          <h2 class="display step-3">Operational readiness fails the same five ways.</h2>
+          <p class="lede">Runway is built around fixing each one. Most of what we sell is the gap between &ldquo;every consultant has their own spreadsheet&rdquo; and &ldquo;everyone is editing the same record.&rdquo;</p>
+          <a href="/pitfalls" class="btn btn-secondary" style="border-color: var(--paper); color: var(--paper);">Read the breakdown</a>
+        </div>
+        <ol class="list">
+          <li><span class="num">01</span>Siloed trackers across consultants</li>
+          <li><span class="num">02</span>Missed dependencies between trades</li>
+          <li><span class="num">03</span>Six-week project setup paralysis</li>
+          <li><span class="num">04</span>Stranded handover documents</li>
+          <li><span class="num">05</span>Notification fatigue burying signals</li>
+        </ol>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="paper" pad="tight">
+    <Container>
+      <div class="m365">
+        <div class="m365-head">
+          <p class="eyebrow">Microsoft 365 native</p>
+          <h2 class="display step-2">Lives inside your tenant. Not next to it.</h2>
+          <p class="lede">Entra SSO. Outlook calendars. SharePoint documents. Teams channel alerts routed per functional area, not a project-wide firehose.</p>
+          <a href="/integrations/microsoft" class="btn btn-ghost">See the M365 integration</a>
+        </div>
+        <div class="m365-logos cluster">
+          <IntegrationLogo name="entra" label="Entra ID" />
+          <IntegrationLogo name="outlook" label="Outlook" />
+          <IntegrationLogo name="sharepoint" label="SharePoint" />
+          <IntegrationLogo name="teams" label="Teams" />
+          <IntegrationLogo name="excel" label="Excel" />
+          <IntegrationLogo name="azure" label="Azure" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container>
+      <header class="pricing-head">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="display step-3">Per project, not per seat.</h2>
+        <p class="lede">Bring your whole team — consultants, contractors, regulators. We charge for the project, not the people in the room.</p>
+      </header>
+      <div class="pricing-grid">
+        <PricingCard
+          tier="Starter"
+          audience="Pilot projects"
+          price="$1,200"
+          priceUnit="/ project / month"
+          features={[
+            { text: 'Up to 25 users' },
+            { text: '100K AI tokens / month' },
+            { text: 'Microsoft 365 SSO' },
+            { text: 'Standard support' },
+          ]}
+          cta="Join the waitlist"
+          href="/#waitlist"
+        />
+        <PricingCard
+          tier="Standard"
+          audience="Active programs"
+          price="$3,500"
+          priceUnit="/ project / month"
+          highlight
+          features={[
+            { text: 'Up to 150 users' },
+            { text: '500K AI tokens / month' },
+            { text: 'M365 SSO + Graph + Teams routing' },
+            { text: 'Priority support' },
+          ]}
+          cta="Join the waitlist"
+          href="/#waitlist"
+        />
+        <PricingCard
+          tier="Enterprise"
+          audience="Multi-program portfolios"
+          price="Contact us"
+          priceUnit="custom terms"
+          features={[
+            { text: 'Unlimited users' },
+            { text: '2M+ AI tokens / month' },
+            { text: 'Custom Entra setup' },
+            { text: 'Dedicated CSM' },
+          ]}
+          cta="Get in touch"
+          href="/contact"
+        />
+      </div>
+      <p class="pricing-foot"><a href="/pricing" class="link">See the full pricing breakdown →</a></p>
+    </Container>
+  </Section>
+
+  <Section tone="ink" id="waitlist">
+    <Container width="narrow">
+      <div class="final stack-l">
+        <p class="eyebrow">Be in the first cohort</p>
+        <h2 class="display step-4">We're shipping now. Get on the list.</h2>
+        <p class="lede">
+          Runway is in active development with a handful of design partners. If you're running ORAT on
+          a complex handover and you've felt this pain, we'd like to talk.
+        </p>
+        <WaitlistForm source="home-final" showMessage cta="Request access" />
+        <p class="entity-strip eyebrow">
+          One workspace for
+          <EntityGlyph type="risk" size={18} /> risks
+          <EntityGlyph type="issue" size={18} /> issues
+          <EntityGlyph type="task" size={18} /> tasks
+          <EntityGlyph type="milestone" size={18} /> milestones
+          <EntityGlyph type="training" size={18} /> training
+          <EntityGlyph type="procedure" size={18} /> procedures
+          <EntityGlyph type="trial" size={18} /> trials
+          <EntityGlyph type="spec" size={18} /> specs
+        </p>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-3 { font-size: var(--step-3); }
+  .step-2 { font-size: var(--step-2); }
+  .step-4 { font-size: var(--step-4); }
+  .step-6 { font-size: var(--step-6); }
+
+  .footnote {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    max-width: 32rem;
+  }
+
+  .ribbon-head { display: flex; flex-direction: column; gap: var(--space-2xs); margin-bottom: var(--space-l); max-width: 50rem; }
+  .ribbon-foot { margin-top: var(--space-m); font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.04em; color: var(--ink-mute); }
+
+  .three-up-head { display: flex; flex-direction: column; gap: var(--space-2xs); margin-bottom: var(--space-xl); max-width: 50rem; }
+  .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-l);
+  }
+  @media (max-width: 900px) {
+    .three-up { grid-template-columns: 1fr; }
+  }
+
+  .pitfalls-teaser {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+  .pitfalls-teaser .copy { display: flex; flex-direction: column; gap: var(--space-m); align-items: flex-start; }
+  .pitfalls-teaser .list { display: flex; flex-direction: column; gap: var(--space-s); }
+  .pitfalls-teaser .list li {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: var(--space-s);
+    align-items: baseline;
+    padding-block: var(--space-s);
+    border-top: 1px solid rgba(244, 239, 230, 0.15);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .pitfalls-teaser .list .num {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    color: var(--accent-soft);
+  }
+  @media (max-width: 900px) {
+    .pitfalls-teaser { grid-template-columns: 1fr; gap: var(--space-l); }
+  }
+
+  .m365 {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+  .m365-head { display: flex; flex-direction: column; gap: var(--space-s); align-items: flex-start; }
+  .m365-logos { gap: var(--space-s); }
+  @media (max-width: 900px) {
+    .m365 { grid-template-columns: 1fr; }
+  }
+
+  .pricing-head { text-align: center; display: flex; flex-direction: column; gap: var(--space-2xs); margin-bottom: var(--space-xl); align-items: center; }
+  .pricing-head .lede { text-align: center; max-width: 40rem; margin-inline: auto; }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-l);
+    align-items: stretch;
+  }
+  .pricing-foot { text-align: center; margin-top: var(--space-l); }
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+
+  .final { text-align: center; align-items: center; }
+  .final .lede { text-align: center; margin-inline: auto; }
+  .final .eyebrow { color: var(--accent-soft); }
+  .final :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+  .entity-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-l);
+    color: rgba(244, 239, 230, 0.7);
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Healthcare"
+  description="Operational readiness for new hospitals, expansions, and acute-care units. Patient-day readiness, compliance gates, and clinical training tracking."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Solutions · Healthcare</p>
+        <span class="roadmap-badge">In active design</span>
+        <h1 class="display step-5">Patient day one is non-negotiable.</h1>
+        <p class="lede">
+          New hospitals, acute-care expansions, and ambulatory openings carry zero tolerance for
+          a missed readiness gate. We're working with early healthcare design partners now to
+          extend Runway with the compliance and clinical-training primitives this sector needs.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">What we're building</h2>
+        <ul class="bullets">
+          <li>Joint Commission and CMS readiness gates as first-class objects on the timeline</li>
+          <li>Clinical training tracking with role-based requirements (RN, RT, MD, pharmacy)</li>
+          <li>Equipment commissioning workflows tied to biomed sign-off</li>
+          <li>Mock-patient trial templates and post-trial findings</li>
+          <li>Unit-level readiness scoring on the floor plan</li>
+        </ul>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Healthcare design partners wanted</p>
+        <h2 class="display step-3">Help us build this with you.</h2>
+        <p class="lede">If you're opening a new hospital or major acute-care unit in the next 24 months, we want to talk. Design-partner pricing applies.</p>
+        <WaitlistForm source="healthcare" showMessage cta="Become a design partner" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .roadmap-badge {
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 2px;
+  }
+  .block { max-width: 50rem; }
+  .bullets { display: flex; flex-direction: column; gap: var(--space-s); padding-left: var(--space-m); list-style: disc; color: var(--ink-soft); }
+  .cta { text-align: center; align-items: center; }
+  .cta .lede { text-align: center; margin-inline: auto; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Hospitality & venues"
+  description="Operational readiness for resorts, recreation venues, and entertainment openings. Pre-opening trials, training plans, and zone readiness scoring for spaces that have to delight on day one."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Solutions · Hospitality &amp; venues</p>
+        <h1 class="display step-5">Opening week is your brand. Don't fly it blind.</h1>
+        <p class="lede">
+          Resorts, recreation centers, member clubs, and entertainment venues live or die by the
+          first month of guest impressions. Runway organizes the trials, training, and punch
+          list that protect that opening.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">Pre-opening reality, organized</h2>
+        <ul class="bullets">
+          <li><strong>Functional areas:</strong> guest arrival, F&amp;B service, recreation (pools, fitness, courts), spa, retail, back-of-house</li>
+          <li><strong>Training requirements:</strong> per-role training requirements linked to spec sections; one click generates a course + N placeholder sessions</li>
+          <li><strong>Trials:</strong> soft-open trials with objective-by-objective pass / fail / blocked logging — find the gaps before paying guests do</li>
+          <li><strong>Punch list:</strong> per-zone punch tracking that doesn't dump into a 600-line spreadsheet</li>
+        </ul>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container width="narrow">
+      <div class="block stack-l">
+        <h2 class="display step-3">Why hospitality teams pick Runway</h2>
+        <ul class="reasons">
+          <li>
+            <strong>Training that survives the GM transition.</strong> Course material, attendance
+            records, and refresher schedules in one place — owned by the operator, not the
+            construction agent.
+          </li>
+          <li>
+            <strong>Zone readiness on the property map.</strong> The spa is 92% ready. The pool deck
+            is 67%. Hover for the blockers. Click for the blade.
+          </li>
+          <li>
+            <strong>Documents stay with you.</strong> Procedures and SOPs live in the operator's
+            SharePoint, not in a vendor's database. When the construction team rolls off, the
+            documentation doesn't go with them.
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Opening a venue?</p>
+        <h2 class="display step-3">Get the demo built around your sector.</h2>
+        <WaitlistForm source="hospitality" showMessage cta="Get in touch" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .block { max-width: 50rem; }
+  .block p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.55; }
+  .bullets { display: flex; flex-direction: column; gap: var(--space-s); padding-left: var(--space-m); list-style: disc; color: var(--ink-soft); }
+  .reasons { display: flex; flex-direction: column; gap: var(--space-m); list-style: none; }
+  .reasons li { padding-left: var(--space-m); border-left: 2px solid var(--accent); color: var(--ink-soft); }
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

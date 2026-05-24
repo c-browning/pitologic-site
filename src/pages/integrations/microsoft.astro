@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import IntegrationLogo from '../../components/marketing/IntegrationLogo.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Microsoft 365"
+  description="Runway runs inside your Microsoft tenant: Entra SSO, External ID for contractors, Outlook + iCal calendar sync, SharePoint document storage, and per-functional-area Teams alerts."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Microsoft 365</p>
+        <h1 class="display step-5">Runs inside your tenant. Not next to it.</h1>
+        <p class="lede">
+          Runway is built for organizations that already standardize on Microsoft 365. Identity,
+          documents, calendars, and chat all flow through services you already run.
+        </p>
+        <div class="logos cluster">
+          <IntegrationLogo name="entra" label="Entra ID" />
+          <IntegrationLogo name="outlook" label="Outlook" />
+          <IntegrationLogo name="sharepoint" label="SharePoint" />
+          <IntegrationLogo name="teams" label="Teams" />
+          <IntegrationLogo name="excel" label="Excel" />
+          <IntegrationLogo name="azure" label="Azure" />
+        </div>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper" id="entra">
+    <Container width="narrow">
+      <article class="block stack-l">
+        <p class="eyebrow">01 · Entra ID</p>
+        <h2 class="display step-3">Single sign-on, with External ID for outsiders.</h2>
+        <p>
+          Runway authenticates via Entra ID. Your IT team manages users in the directory they
+          already manage. There's no separate Runway account to provision, password to reset, or
+          MFA prompt to re-train.
+        </p>
+        <p>
+          For consultants, contractors, regulators, and other stakeholders outside your tenant,
+          Entra External ID handles invitations and federated authentication. Same login flow.
+          Scoped permissions.
+        </p>
+        <ul class="bullets">
+          <li>Multi-tenant routing on subdomains (<code>acme.pitotrunway.app</code>)</li>
+          <li>Tenant auto-detection from JWT claims</li>
+          <li>Admin-consent flow with documented Graph scopes</li>
+          <li>Test-connection button in admin with diagnostic output</li>
+        </ul>
+      </article>
+    </Container>
+  </Section>
+
+  <Section tone="cream" id="outlook">
+    <Container width="narrow">
+      <article class="block stack-l">
+        <p class="eyebrow">02 · Outlook + iCal</p>
+        <h2 class="display step-3">Calendar sync that works for everyone, even contractors.</h2>
+        <p>
+          ORAT meetings (kickoffs, trial coordination, working-group syncs) push to Outlook via
+          Microsoft Graph. Updates, cancellations, and attendee changes flow back automatically.
+          Conflicts surface in the meeting blade — no exceptions thrown, no silent failures.
+        </p>
+        <p>
+          Stakeholders outside your tenant — who can't always reach Graph — get a signed iCal feed
+          that subscribes to their tasks, owned milestones, and training sessions. Works in
+          Outlook, Apple Calendar, Google Calendar. Same data. Same URL. Zero IT setup.
+        </p>
+      </article>
+    </Container>
+  </Section>
+
+  <Section tone="paper" id="sharepoint">
+    <Container width="narrow">
+      <article class="block stack-l">
+        <p class="eyebrow">03 · SharePoint &amp; OneDrive</p>
+        <h2 class="display step-3">Your documents. Your tenant. Always.</h2>
+        <p>
+          Every attachment in Runway is a Graph reference to a file in your SharePoint or
+          OneDrive. <strong>Nothing is stored in Runway's database.</strong> When the construction
+          team rolls off and the operator takes over, documents don't roll off with anyone —
+          they were always in the operator's tenant.
+        </p>
+        <p>
+          From the attachment selector, create new Word, Excel, or PowerPoint files directly into
+          the right SharePoint library without leaving Runway. Browse existing libraries.
+          Drag-drop upload. Pick from recent files. One picker, four sources.
+        </p>
+      </article>
+    </Container>
+  </Section>
+
+  <Section tone="cream" id="teams">
+    <Container width="narrow">
+      <article class="block stack-l">
+        <p class="eyebrow">04 · Teams</p>
+        <h2 class="display step-3">Channel alerts routed where the work happens.</h2>
+        <p>
+          Per-functional-area incoming webhooks. The Aquatics functional area routes risk and
+          issue events to the Aquatics Teams channel. BHS routes to the BHS channel. Events
+          without an FA match fall back to the project-wide channel. Admins self-serve the
+          webhook URLs in Runway's integrations page — zero Graph scope changes, zero Entra app
+          changes.
+        </p>
+        <p>
+          The event allowlist is curated for signal: risk created, risk promoted to issue, issue
+          opened, issue status changed. Everything posts as an Adaptive Card with deep links
+          back to the originating record in Runway.
+        </p>
+      </article>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Microsoft 365 prerequisites</p>
+        <h2 class="display step-3">Three permissions. One admin consent. You're in.</h2>
+        <p class="lede">
+          We document the exact Graph scopes Runway needs and provide a one-click admin consent URL.
+          No back-and-forth with the IT team. No mystery permissions.
+        </p>
+        <WaitlistForm source="microsoft" showMessage cta="Get the integration brief" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .logos { gap: var(--space-s); }
+  .block { max-width: 50rem; }
+  .block p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.55; }
+  .bullets { display: flex; flex-direction: column; gap: var(--space-2xs); padding-left: var(--space-m); list-style: disc; color: var(--ink-soft); }
+  code { font-family: var(--font-mono); font-size: 0.9em; background: var(--paper-soft); padding: 1px 6px; border-radius: 2px; }
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta .lede { text-align: center; margin-inline: auto; }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

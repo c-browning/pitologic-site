@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import EntityGlyph from '../../components/graphics/EntityGlyph.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+
+const entities = [
+  { type: 'milestone', label: 'Milestone', note: 'Schedule anchor' },
+  { type: 'risk', label: 'Risk', note: 'Probability × impact' },
+  { type: 'issue', label: 'Issue', note: 'Active problem' },
+  { type: 'task', label: 'Task', note: 'Atomic work' },
+  { type: 'training', label: 'Training', note: 'Course + event' },
+  { type: 'procedure', label: 'Procedure', note: '7-stage workflow' },
+  { type: 'trial', label: 'Trial', note: 'Objectives + test points' },
+  { type: 'spec', label: 'Spec row', note: 'Requirement detail' },
+] as const;
+---
+<BaseLayout
+  title="Connected data"
+  description="Every entity in Runway links to every other with typed relationships. Risks roll up to milestones, milestones drive trial dates, trials map to spec rows. One graph. No reconciliation."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Pillar 02 · Connected data</p>
+        <h1 class="display step-5">Everything links to everything. With types. With offsets.</h1>
+        <p class="lede">
+          The whole point of ORAT is connecting trades that don't normally talk. Runway's data
+          model is the connective tissue: a single typed graph that any entity can join.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <div class="grid-head">
+        <h2 class="display step-3">Eight entity types. One link table.</h2>
+        <p class="lede">A risk can finish-before a milestone with a 14-day offset. A procedure can spawn-from a spec row. A trial can be related-to a training event. Same primitive, applied across the domain.</p>
+      </div>
+      <div class="entities">
+        {entities.map((e) => (
+          <div class="ent">
+            <EntityGlyph type={e.type} size={26} color="var(--accent)" />
+            <p class="ent-label">{e.label}</p>
+            <p class="ent-note">{e.note}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container>
+      <div class="row-list">
+        <article class="row-item">
+          <h3 class="row-title">Typed relationships</h3>
+          <p>
+            Every link carries a type — <em>Finish Before</em>, <em>Related To</em>, <em>Spawned From</em> —
+            and an optional offset. The data model knows that "BHS commissioning must finish 14
+            working days before the first trial." That fact drives the schedule, the dependency
+            graph, and the cascade engine.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Risk → Issue promotion</h3>
+          <p>
+            A risk that materializes promotes to an issue with a single click. The discussion thread
+            carries across. Both records reference each other from a counterpart banner. Nothing is
+            re-typed; nothing is lost.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Dependency graph</h3>
+          <p>
+            Every milestone blade has a read-only graph view showing what blocks it and what it
+            blocks. Critical-path edges are highlighted. Blocked items get a "Blocked by X"
+            annotation right on the timeline.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Working groups + functional areas</h3>
+          <p>
+            Tag any readiness activity with one or more working groups (Baggage Systems, IT &amp;
+            Comms, Aquatics). Roll up by group, slice by phase, filter to today's hot list. Tags
+            also drive Teams alert routing.
+          </p>
+        </article>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">See the graph in action</p>
+        <h2 class="display step-3">Get a walkthrough of the link model.</h2>
+        <WaitlistForm source="data-fabric" cta="Request a walkthrough" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .grid-head { max-width: 50rem; margin-bottom: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-s); }
+  .entities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-s);
+    overflow: hidden;
+  }
+  .ent {
+    background: var(--paper);
+    padding: var(--space-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+  .ent-label { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; }
+  .ent-note { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.04em; color: var(--ink-mute); }
+  @media (max-width: 800px) { .entities { grid-template-columns: repeat(2, 1fr); } }
+
+  .row-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-xl) var(--space-2xl); }
+  .row-item { display: flex; flex-direction: column; gap: var(--space-s); padding-top: var(--space-l); border-top: 1px solid var(--rule); }
+  .row-title { font-family: var(--font-display); font-size: var(--step-2); font-weight: 700; }
+  .row-item p { color: var(--ink-soft); }
+  @media (max-width: 800px) { .row-list { grid-template-columns: 1fr; } }
+
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

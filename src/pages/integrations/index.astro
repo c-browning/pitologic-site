@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import IntegrationLogo from '../../components/marketing/IntegrationLogo.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Integrations"
+  description="Runway lives inside your Microsoft 365 tenant: Entra SSO, Outlook calendars, SharePoint documents, Teams channel alerts. No separate identity store. No document silos."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Integrations</p>
+        <h1 class="display step-5">Built on the stack your team already runs.</h1>
+        <p class="lede">
+          Operational readiness teams already live in Microsoft 365. Runway runs inside that
+          tenant, not next to it. Same identity. Same documents. Same calendars. Same Teams
+          channels.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <div class="logos cluster">
+        <IntegrationLogo name="entra" label="Entra ID" />
+        <IntegrationLogo name="outlook" label="Outlook" />
+        <IntegrationLogo name="sharepoint" label="SharePoint" />
+        <IntegrationLogo name="teams" label="Teams" />
+        <IntegrationLogo name="excel" label="Excel" />
+        <IntegrationLogo name="azure" label="Azure" />
+      </div>
+      <div class="grid">
+        <a href="/integrations/microsoft" class="card">
+          <p class="card-eyebrow">Identity &amp; tenant</p>
+          <h3 class="card-title">Microsoft Entra ID</h3>
+          <p>Single sign-on for your team. External ID for contractors and regulators. Multi-tenant subdomain routing.</p>
+          <span class="more">Read more →</span>
+        </a>
+        <a href="/integrations/microsoft#outlook" class="card">
+          <p class="card-eyebrow">Calendars</p>
+          <h3 class="card-title">Outlook + iCal</h3>
+          <p>ORAT meetings sync to Outlook via Graph. Per-user iCal feeds work for everyone, including external stakeholders.</p>
+          <span class="more">Read more →</span>
+        </a>
+        <a href="/integrations/microsoft#sharepoint" class="card">
+          <p class="card-eyebrow">Documents</p>
+          <h3 class="card-title">SharePoint &amp; OneDrive</h3>
+          <p>Documents stay in your tenant. Runway never stores them. Create new Word, Excel, PowerPoint files in place.</p>
+          <span class="more">Read more →</span>
+        </a>
+        <a href="/integrations/microsoft#teams" class="card">
+          <p class="card-eyebrow">Alerts</p>
+          <h3 class="card-title">Teams channel routing</h3>
+          <p>Per-functional-area webhooks. Aquatics risks to the Aquatics channel. No project-wide firehose.</p>
+          <span class="more">Read more →</span>
+        </a>
+        <div class="card card-soft">
+          <p class="card-eyebrow">Roadmap</p>
+          <h3 class="card-title">Power BI export</h3>
+          <p>Direct dataset export for executive dashboards. On the roadmap — add your name to the waitlist to vote it up.</p>
+        </div>
+        <div class="card card-soft">
+          <p class="card-eyebrow">Roadmap</p>
+          <h3 class="card-title">Procore + Autodesk</h3>
+          <p>Two-way sync with construction-side trackers. Under evaluation. We're listening to which connectors matter most.</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Need a specific integration?</p>
+        <h2 class="display step-3">Tell us what your stack looks like.</h2>
+        <WaitlistForm source="integrations" showMessage cta="Get in touch" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .logos { gap: var(--space-s); margin-bottom: var(--space-xl); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-l);
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-l);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-m);
+    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  a.card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .card-soft { background: var(--paper-soft); opacity: 0.85; }
+  .card-eyebrow { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .card-title { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.2; }
+  .card p { color: var(--ink-soft); font-size: var(--step--1); }
+  .more { margin-top: auto; font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

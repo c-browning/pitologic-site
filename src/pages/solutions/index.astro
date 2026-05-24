@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+
+const sectors = [
+  {
+    href: '/solutions/airports',
+    eyebrow: 'Airports',
+    title: 'Terminals, BHS, and transit handovers.',
+    body: 'Built around the rhythm of airport openings: phased turnover, multiple consultants, regulatory sign-offs, and live-ops trial cycles.',
+    available: true,
+  },
+  {
+    href: '/solutions/hospitality',
+    eyebrow: 'Hospitality &amp; venues',
+    title: 'Resorts, recreation, and entertainment.',
+    body: 'Operational readiness for venues where opening week defines reputation. Pre-opening trials, training, and zone readiness scoring.',
+    available: true,
+  },
+  {
+    href: '/solutions/healthcare',
+    eyebrow: 'Healthcare',
+    title: 'Hospitals and acute-care facilities.',
+    body: 'Patient-day readiness for new hospitals, expansions, and acute-care units. Compliance gates and clinical training.',
+    available: false,
+  },
+];
+---
+<BaseLayout
+  title="Solutions"
+  description="Runway is purpose-built for operational readiness on complex handovers — airports, hospitality venues, healthcare facilities, and other large-scale openings."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Solutions</p>
+        <h1 class="display step-5">Built for the openings that can't fail on day one.</h1>
+        <p class="lede">
+          The principles of operational readiness are universal. The vocabulary, regulators, and
+          trade groups are not. Runway ships with project-type templates that pre-seed sensible
+          libraries for your sector — so you start with a working set, not a blank page.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <div class="sector-list">
+        {sectors.map((s) => (
+          <a href={s.available ? s.href : '#'} class:list={['sector', { unavailable: !s.available }]}>
+            <div class="sector-copy">
+              <p class="sector-eyebrow" set:html={s.eyebrow} />
+              <h3 class="sector-title">{s.title}</h3>
+              <p class="sector-body">{s.body}</p>
+              {!s.available && <span class="badge">Roadmap</span>}
+            </div>
+            {s.available && <span class="more">Read more →</span>}
+          </a>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Different sector?</p>
+        <h2 class="display step-3">Data centers, manufacturing, transit — we'd like to hear about it.</h2>
+        <p class="lede">If your team runs ORAT under a different name, the same primitives probably apply. Tell us what your project looks like.</p>
+        <WaitlistForm source="solutions" showMessage cta="Get in touch" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .sector-list { display: flex; flex-direction: column; gap: var(--space-s); }
+  .sector {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-l);
+    padding: var(--space-xl) var(--space-l);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-m);
+    align-items: center;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+  }
+  .sector:not(.unavailable):hover { border-color: var(--ink); background: var(--cream); }
+  .sector.unavailable { opacity: 0.65; cursor: not-allowed; }
+  .sector-eyebrow { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-2xs); }
+  .sector-title { font-family: var(--font-display); font-size: var(--step-2); font-weight: 700; line-height: 1.15; }
+  .sector-body { color: var(--ink-soft); margin-top: var(--space-2xs); max-width: 50rem; }
+  .badge {
+    display: inline-block;
+    margin-top: var(--space-2xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-mute);
+  }
+  .more { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+  @media (max-width: 700px) { .sector { grid-template-columns: 1fr; gap: var(--space-s); } }
+  .cta { text-align: center; align-items: center; }
+  .cta .lede { text-align: center; margin-inline: auto; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

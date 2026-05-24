@@ -1,21 +1,16 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "pitologic-site",
-	"type": "javascript",
+	"name": "pitotlogic-site",
 	"compatibility_date": "2026-04-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"pages_build_output_dir": "./dist",
 	"observability": {
 		"enabled": true
-	},
-	"assets": {
-		"directory": "."
 	},
 	"kv_namespaces": [
 		{
 			"binding": "NOTIFY_KV",
 			"id": "ce2a0adbdbdb436cb970b984651a7a8a"
 		}
-	],
-	"compatibility_flags": [
-		"nodejs_compat"
 	]
 }

@@ -1,0 +1,123 @@
+---
+import Container from './Container.astro';
+import Wordmark from '../graphics/Wordmark.astro';
+import WaitlistForm from '../forms/WaitlistForm.astro';
+
+const cols = [
+  {
+    heading: 'Product',
+    links: [
+      { href: '/product', label: 'Overview' },
+      { href: '/product/ease-of-use', label: 'In-context editing' },
+      { href: '/product/data-fabric', label: 'Connected data' },
+      { href: '/product/schedule', label: 'Smart scheduling' },
+      { href: '/product/ai-setup', label: 'AI project setup' },
+      { href: '/integrations/microsoft', label: 'Microsoft 365' },
+      { href: '/pricing', label: 'Pricing' },
+    ],
+  },
+  {
+    heading: 'Solutions',
+    links: [
+      { href: '/solutions/airports', label: 'Airports' },
+      { href: '/solutions/hospitality', label: 'Hospitality & venues' },
+      { href: '/solutions/healthcare', label: 'Healthcare' },
+      { href: '/pitfalls', label: 'Five ORAT pitfalls' },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { href: '/about', label: 'About' },
+      { href: '/contact', label: 'Contact' },
+      { href: '/legal/privacy', label: 'Privacy' },
+      { href: '/legal/terms', label: 'Terms' },
+    ],
+  },
+];
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer surface-ink">
+  <Container width="wide">
+    <div class="top">
+      <div class="brand-block">
+        <Wordmark width={170} color="var(--paper)" />
+        <p class="tagline">Operational readiness, instrumented.</p>
+        <div class="signup">
+          <p class="eyebrow">Join the waitlist</p>
+          <WaitlistForm source="footer" variant="compact" cta="Notify me" />
+        </div>
+      </div>
+      <nav class="cols" aria-label="Footer">
+        {cols.map((col) => (
+          <div class="col">
+            <p class="col-heading eyebrow">{col.heading}</p>
+            <ul>
+              {col.links.map((l) => (
+                <li><a href={l.href}>{l.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </div>
+    <hr class="rule" />
+    <div class="bottom">
+      <p class="copy">© {year} Pitot Logic LLC. Runway is a product of Pitot Logic.</p>
+      <p class="copy mono">v0.1 — built on the Cloudflare edge.</p>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .site-footer { padding-block: var(--space-2xl) var(--space-xl); }
+  .top {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .brand-block { display: flex; flex-direction: column; gap: var(--space-m); max-width: 28rem; }
+  .tagline {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--paper);
+  }
+  .signup { margin-top: var(--space-s); display: flex; flex-direction: column; gap: var(--space-2xs); }
+  .signup .eyebrow { color: var(--accent-soft); }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+  .col-heading { color: var(--accent-soft); margin-bottom: var(--space-s); }
+  .col ul { display: flex; flex-direction: column; gap: var(--space-2xs); }
+  .col a {
+    font-size: var(--step--1);
+    color: rgba(244, 239, 230, 0.82);
+    transition: color var(--dur) var(--ease);
+  }
+  .col a:hover { color: var(--paper); }
+
+  .rule { margin-block: var(--space-xl); border-color: rgba(244, 239, 230, 0.14); }
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s);
+  }
+  .copy { font-size: var(--step--2); color: rgba(244, 239, 230, 0.6); }
+  .mono { font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  @media (max-width: 900px) {
+    .top { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .cols { grid-template-columns: 1fr 1fr; gap: var(--space-l); }
+  }
+  @media (max-width: 500px) {
+    .cols { grid-template-columns: 1fr; }
+  }
+</style>

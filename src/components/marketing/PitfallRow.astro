@@ -1,0 +1,89 @@
+---
+interface Props {
+  num: string;
+  pitfall: string;
+}
+const { num, pitfall } = Astro.props;
+---
+<article class="pitfall">
+  <div class="ord">
+    <span class="num">{num}</span>
+    <span class="rule"></span>
+  </div>
+  <div class="content">
+    <h3 class="title">{pitfall}</h3>
+    <div class="split">
+      <div class="problem">
+        <p class="eyebrow">What goes wrong</p>
+        <slot name="problem" />
+      </div>
+      <div class="solution">
+        <p class="eyebrow">How Runway eases the lift</p>
+        <slot name="solution" />
+      </div>
+    </div>
+    <div class="evidence">
+      <slot name="evidence" />
+    </div>
+  </div>
+</article>
+
+<style>
+  .pitfall {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl);
+    border-bottom: 1px solid var(--rule);
+  }
+  .pitfall:last-of-type { border-bottom: 0; }
+
+  .ord {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+    min-width: 80px;
+  }
+  .num {
+    font-family: var(--font-display);
+    font-size: var(--step-5);
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .ord .rule {
+    width: 36px;
+    height: 1px;
+    background: var(--ink);
+  }
+  .title {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: var(--space-m);
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-m);
+  }
+  .problem, .solution { display: flex; flex-direction: column; gap: var(--space-2xs); }
+  .problem p, .solution p { color: var(--ink-soft); line-height: 1.55; }
+  .evidence {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    padding-top: var(--space-s);
+    border-top: 1px dashed var(--rule);
+  }
+
+  @media (max-width: 800px) {
+    .pitfall { grid-template-columns: 1fr; gap: var(--space-l); }
+    .split { grid-template-columns: 1fr; gap: var(--space-m); }
+  }
+</style>

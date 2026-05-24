@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Contact"
+  description="Tell us about your project. We're shipping with a hand-picked first cohort and we'd like to talk to teams running ORAT on complex handovers."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Contact</p>
+        <h1 class="display step-5">Tell us about your project.</h1>
+        <p class="lede">
+          We're shipping with a hand-picked first cohort. The fastest way in is to send a note
+          about what you're opening, when, and what makes it complicated.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container width="narrow">
+      <div class="grid">
+        <div class="form-block">
+          <WaitlistForm source="contact" variant="stacked" showMessage cta="Send" />
+          <p class="hint">We'll reply within two business days — usually faster.</p>
+        </div>
+        <div class="aside">
+          <div class="aside-block">
+            <p class="eyebrow">For partners</p>
+            <p>Building consultants, ORAT advisors, and integration partners — we'd love to talk. Mention "partner" in the message and we'll route it.</p>
+          </div>
+          <div class="aside-block">
+            <p class="eyebrow">For press</p>
+            <p>If you cover construction tech, operational readiness, or AEC SaaS, reach out the same way and we'll get you to the founder.</p>
+          </div>
+          <div class="aside-block">
+            <p class="eyebrow">Direct email</p>
+            <p>Or skip the form: <a class="link" href="mailto:hello@pitotlogic.com">hello@pitotlogic.com</a></p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .head { max-width: 50rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .form-block { display: flex; flex-direction: column; gap: var(--space-m); }
+  .hint { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.04em; color: var(--ink-mute); }
+  .aside { display: flex; flex-direction: column; gap: var(--space-l); }
+  .aside-block { display: flex; flex-direction: column; gap: var(--space-2xs); padding: var(--space-m); background: var(--cream); border-radius: var(--radius-m); }
+  .aside-block p { color: var(--ink-soft); font-size: var(--step--1); }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; gap: var(--space-l); } }
+</style>

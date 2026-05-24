@@ -1,0 +1,60 @@
+:root {
+  /* Palette — anchored to logo direction (deep navy on cream) */
+  --ink:          #0B2A4A;
+  --ink-soft:     #1F3A5F;
+  --ink-mute:     #6B7C92;
+  --cream:        #F4EFE6;
+  --paper:        #FAF7F1;
+  --paper-soft:   #ECE6D8;
+  --accent:       #C9572B;   /* burnt copper — CTAs, underlines */
+  --accent-soft:  #E8B999;
+  --accent-deep:  #8C3A18;
+  --rule:         #D9D2C2;   /* hairlines */
+  --rule-soft:    #E8E2D2;
+  --success:      #2F6E4E;
+  --warning:      #B58A20;
+  --danger:       #B5343C;
+
+  /* Type */
+  --font-display: 'Syne', 'Helvetica Neue', system-ui, sans-serif;
+  --font-text:    'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+  --font-mono:    'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Scale */
+  --step--2: clamp(0.69rem, 0.66rem + 0.16vw, 0.78rem);
+  --step--1: clamp(0.83rem, 0.78rem + 0.27vw, 0.98rem);
+  --step-0:  clamp(1.00rem, 0.92rem + 0.43vw, 1.25rem);
+  --step-1:  clamp(1.20rem, 1.07rem + 0.66vw, 1.56rem);
+  --step-2:  clamp(1.44rem, 1.24rem + 0.99vw, 1.95rem);
+  --step-3:  clamp(1.73rem, 1.44rem + 1.46vw, 2.44rem);
+  --step-4:  clamp(2.07rem, 1.65rem + 2.12vw, 3.05rem);
+  --step-5:  clamp(2.49rem, 1.88rem + 3.04vw, 3.81rem);
+  --step-6:  clamp(2.99rem, 2.13rem + 4.30vw, 4.77rem);
+
+  /* Space */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6.5rem;
+  --space-4xl: 9rem;
+
+  /* Layout */
+  --container-narrow: 64rem;
+  --container:        80rem;
+  --container-wide:   96rem;
+  --radius-xs: 2px;
+  --radius-s:  4px;
+  --radius-m:  8px;
+  --radius-l:  16px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast:   140ms;
+  --dur:        220ms;
+  --dur-slow:   420ms;
+}

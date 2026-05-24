@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import PitfallRow from '../components/marketing/PitfallRow.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="The five pitfalls of operational readiness"
+  description="Operational readiness fails the same five ways: siloed trackers, missed dependencies, setup paralysis, stranded handover docs, and notification fatigue. Here's how Runway eases each lift."
+>
+  <Section tone="cream" pad="default">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">The breakdown</p>
+        <h1 class="display step-5">Operational readiness fails the same five ways. Runway is built around fixing each.</h1>
+        <p class="lede">
+          We didn't invent these pitfalls — we lived them on terminal handovers, resort openings, and
+          critical-systems cutovers. Every feature in Runway maps back to one of these failure modes.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper" pad="default">
+    <Container width="narrow">
+      <PitfallRow num="01" pitfall="Siloed trackers across consultants.">
+        <div slot="problem">
+          <p>
+            The risk register lives in the construction manager's Excel. Training requirements live
+            in the operator's MS Project. Spec deviations live in a third-party PDF that's three
+            revisions behind. Every status meeting is a reconciliation exercise — and the
+            reconciliation drifts the moment the meeting ends.
+          </p>
+          <p>
+            Worse, the same risk shows up in two trackers with different IDs, different owners, and
+            different mitigations. The team can't tell which version is current.
+          </p>
+        </div>
+        <div slot="solution">
+          <p>
+            One workspace. Every risk, issue, task, training event, procedure, and trial lives in a
+            single tenant with typed relationships between them. Consultants get scoped access to
+            their construction phase. Operators see the rollup. No one is reconciling.
+          </p>
+          <p>
+            The <strong>My Work</strong> feed shows everyone their assigned items across modules in one
+            list — color-coded by type, filtered by overdue, ranked by due date.
+          </p>
+        </div>
+        <p slot="evidence">Evidence in Runway: unified EntityLink graph · scoped construction-phase membership · My Work cross-module feed</p>
+      </PitfallRow>
+
+      <PitfallRow num="02" pitfall="Missed dependencies between trades.">
+        <div slot="problem">
+          <p>
+            &ldquo;We didn't know BHS commissioning needed the IT cutover to finish first.&rdquo; That sentence,
+            spoken three weeks before opening day, is what kills ORAT programs. Every trade has a
+            schedule. None of them talk to each other. When a date slips, no one knows what else
+            just slipped with it.
+          </p>
+        </div>
+        <div slot="solution">
+          <p>
+            Runway links activities with typed dependencies (<em>Finish Before</em>, <em>Related To</em>,
+            <em>Spawned From</em>) and offsets (14 days, 30 days, working-day-aware). When a predecessor
+            moves, the offset engine recalculates every downstream date — and the timeline shows a
+            chevron pointing at the driving predecessor, so the team can see <em>why</em> a date moved.
+          </p>
+          <p>
+            The dependency graph on every milestone blade makes "what blocks this?" answerable
+            without leaving the screen.
+          </p>
+        </div>
+        <p slot="evidence">Evidence in Runway: ReadinessOffsetEngine · driving-predecessor chevron · EntityLink with offsets · dependency graph panel</p>
+      </PitfallRow>
+
+      <PitfallRow num="03" pitfall="Six weeks of project setup paralysis.">
+        <div slot="problem">
+          <p>
+            Before anyone does real ORAT work, someone has to populate functional areas, space types,
+            facility types, stakeholder roles, work item categories, training requirements, and
+            specification rows. Each pulled from a different document. Each typed by hand. Each
+            second-guessed in setup meetings.
+          </p>
+          <p>By the time setup is done, the project has lost six weeks.</p>
+        </div>
+        <div slot="solution">
+          <p>
+            Upload your ConOps. Upload your spec PDF. Upload your master program. Runway's
+            Claude-powered Project Assistant reads them and proposes functional areas, stakeholders,
+            training items, and spec rows as one-click suggestions. You accept what fits and skip
+            what doesn't.
+          </p>
+          <p>
+            For airports, resorts, healthcare, and data centers, project-type templates pre-seed
+            sensible libraries so you start with a working set, not an empty database.
+          </p>
+        </div>
+        <p slot="evidence">Evidence in Runway: ProjectAssistant · six AI suggestion modules · project-type library templates · spec PDF + Excel ingestion (JCB-378)</p>
+      </PitfallRow>
+
+      <PitfallRow num="04" pitfall="Stranded handover documents.">
+        <div slot="problem">
+          <p>
+            Procedures live in the commissioning agent's OneDrive. Training records live in the
+            operator's HR system. As-built drawings live in a SharePoint nobody can find. When
+            handover lands, half the documents are stranded — and the operator's first week is
+            spent hunting them down.
+          </p>
+        </div>
+        <div slot="solution">
+          <p>
+            Runway doesn't store documents in its own database. Every attachment lives in <em>your</em>
+            SharePoint via Microsoft Graph. When the construction team rolls off, the documents
+            don't roll off with them — they were always in the operator's tenant.
+          </p>
+          <p>
+            Create Word, Excel, and PowerPoint files directly from a procedure or training record
+            without leaving Runway. The file is born in the right SharePoint library.
+          </p>
+        </div>
+        <p slot="evidence">Evidence in Runway: SharePointDocumentService · Microsoft Graph attachment flow · "Create new SharePoint document" action (JCB-357)</p>
+      </PitfallRow>
+
+      <PitfallRow num="05" pitfall="Notification fatigue burying critical signals.">
+        <div slot="problem">
+          <p>
+            One project-wide email distribution list. Every risk, every issue, every status change
+            blasts to everyone. Within a week, the team filters Runway emails to "later." Critical
+            risk escalations are read three days late, if at all.
+          </p>
+        </div>
+        <div slot="solution">
+          <p>
+            Per-functional-area Teams webhook routing. Aquatics-area risks post to the Aquatics
+            Teams channel. BHS issues post to the BHS channel. Cross-cutting events fall back to a
+            project-wide channel. The signal-to-noise ratio collapses from "all" to "yours."
+          </p>
+          <p>
+            For people who live in calendars instead of Teams, each user gets a signed iCal feed
+            with their tasks, training, and owned milestones — works for external stakeholders who
+            can't even reach Graph.
+          </p>
+        </div>
+        <p slot="evidence">Evidence in Runway: per-FA Teams webhook routing (JCB-372) · per-user iCal feeds (JCB-365) · adaptive-card event allowlist</p>
+      </PitfallRow>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta-block stack-l">
+        <p class="eyebrow">If any of these sound familiar</p>
+        <h2 class="display step-3">We'd like to talk to you.</h2>
+        <p class="lede">Runway is in active development with a small first cohort. Add your email — we'll show you the parts that apply to your project.</p>
+        <WaitlistForm source="pitfalls" showMessage cta="Get in touch" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .cta-block { text-align: center; align-items: center; }
+  .cta-block .lede { text-align: center; margin-inline: auto; }
+  .cta-block .eyebrow { color: var(--accent-soft); }
+  .cta-block :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

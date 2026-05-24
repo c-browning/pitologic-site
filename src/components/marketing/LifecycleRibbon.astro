@@ -1,0 +1,91 @@
+---
+interface Props {
+  active?: number;
+}
+const { active = -1 } = Astro.props;
+
+const phases = [
+  { n: '01', name: 'Planning & ConOps', note: 'Concept of ops, scope' },
+  { n: '02', name: 'Design Review', note: 'Submittals, gates' },
+  { n: '03', name: 'Spec & Training', note: 'Build the library' },
+  { n: '04', name: 'Construction', note: 'Site progress' },
+  { n: '05', name: 'Mobilization', note: 'Equipment, staffing' },
+  { n: '06', name: 'Activation', note: 'Trials, dry runs' },
+  { n: '07', name: 'Live Operations', note: 'Day-1 readiness' },
+  { n: '08', name: 'Closeout', note: 'Warranty, handover' },
+];
+---
+<div class="ribbon" role="list" aria-label="ORAT lifecycle phases">
+  {phases.map((p, i) => (
+    <div class:list={['phase', { active: i === active }]} role="listitem">
+      <span class="num">{p.n}</span>
+      <span class="name">{p.name}</span>
+      <span class="note">{p.note}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .ribbon {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-s);
+    overflow: hidden;
+  }
+  .phase {
+    background: var(--paper);
+    padding: var(--space-m) var(--space-s);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    min-height: 130px;
+    position: relative;
+    transition: background var(--dur) var(--ease);
+  }
+  .phase:hover { background: var(--cream); }
+  .phase.active { background: var(--ink); color: var(--paper); }
+  .phase.active .num,
+  .phase.active .note { color: var(--accent-soft); }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .name {
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  .note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    margin-top: auto;
+  }
+
+  :global(.surface-ink) .ribbon {
+    background: rgba(244, 239, 230, 0.15);
+    border-color: rgba(244, 239, 230, 0.15);
+  }
+  :global(.surface-ink) .phase {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  :global(.surface-ink) .phase .note { color: rgba(244, 239, 230, 0.55); }
+  :global(.surface-ink) .phase:hover { background: var(--ink-soft); }
+
+  @media (max-width: 1100px) {
+    .ribbon { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .ribbon { grid-template-columns: repeat(2, 1fr); }
+    .phase { min-height: 110px; }
+  }
+</style>

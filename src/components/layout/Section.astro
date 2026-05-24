@@ -1,0 +1,14 @@
+---
+interface Props {
+  tone?: 'paper' | 'cream' | 'ink';
+  pad?: 'default' | 'tight';
+  class?: string;
+  id?: string;
+}
+const { tone = 'paper', pad = 'default', class: className = '', id } = Astro.props;
+const toneClass = tone === 'ink' ? 'surface-ink' : tone === 'cream' ? 'surface-cream' : 'surface-paper';
+const padClass = pad === 'tight' ? 'section-tight' : 'section';
+---
+<section id={id} class:list={[toneClass, padClass, className]}>
+  <slot />
+</section>

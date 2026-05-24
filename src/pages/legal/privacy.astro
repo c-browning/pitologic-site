@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+
+const lastUpdated = '2026-05-19';
+---
+<BaseLayout
+  title="Privacy"
+  description="Pitot Logic privacy policy — what we collect, what we don't, and how we handle data on the marketing site and inside Runway."
+  noindex
+>
+  <Section tone="paper">
+    <Container width="narrow">
+      <article class="doc stack-l">
+        <header>
+          <p class="eyebrow">Legal · Privacy</p>
+          <h1 class="display step-4">Privacy policy</h1>
+          <p class="updated">Last updated: {lastUpdated}</p>
+        </header>
+
+        <section>
+          <h2>The short version</h2>
+          <p>
+            On <strong>pitotlogic.com</strong>, we collect the email address you provide on the
+            waitlist form and any optional context you add in the message field. We store it on
+            Cloudflare KV. We use it to contact you about Runway and nothing else.
+          </p>
+          <p>
+            Inside <strong>Runway</strong> (the product), data lives in your Microsoft tenant —
+            documents in your SharePoint, identities in your Entra directory, calendar events in
+            the organizer's mailbox. Pitot Logic stores application records (risks, issues,
+            tasks, etc.) in a Microsoft Azure SQL database that's scoped to your tenant.
+          </p>
+        </section>
+
+        <section>
+          <h2>What we collect on this site</h2>
+          <ul>
+            <li>Email address (when you submit the waitlist form)</li>
+            <li>Optional message text (when you submit the contact form)</li>
+            <li>Source (which form you used)</li>
+            <li>Timestamp and user-agent string (for diagnostic purposes)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>What we don't collect</h2>
+          <ul>
+            <li>Third-party analytics with cross-site tracking</li>
+            <li>Marketing cookies</li>
+            <li>Session replay</li>
+            <li>Anything from visitors who don't submit a form</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Hosting</h2>
+          <p>
+            This site is hosted on Cloudflare Pages. Form submissions are processed by a Cloudflare
+            Pages Function and persisted to Cloudflare KV. Standard server logs are kept by
+            Cloudflare per their data-retention policy.
+          </p>
+        </section>
+
+        <section>
+          <h2>Your rights</h2>
+          <p>
+            Email <a class="link" href="mailto:privacy@pitotlogic.com">privacy@pitotlogic.com</a>
+            to request access to or deletion of any data we hold about you. We'll respond within
+            30 days.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            Pitot Logic LLC. For privacy questions:
+            <a class="link" href="mailto:privacy@pitotlogic.com">privacy@pitotlogic.com</a>.
+          </p>
+        </section>
+      </article>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-4 { font-size: var(--step-4); }
+  .doc { max-width: 42rem; }
+  .updated { font-family: var(--font-mono); font-size: var(--step--2); color: var(--ink-mute); margin-top: var(--space-2xs); }
+  .doc section { margin-top: var(--space-l); }
+  .doc h2 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; margin-bottom: var(--space-s); }
+  .doc p { color: var(--ink-soft); margin-bottom: var(--space-s); line-height: 1.6; }
+  .doc ul { list-style: disc; padding-left: var(--space-l); color: var(--ink-soft); display: flex; flex-direction: column; gap: var(--space-3xs); }
+</style>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  width?: number;
+  color?: string;
+  class?: string;
+}
+const { width = 180, color = 'currentColor', class: className } = Astro.props;
+---
+<svg
+  viewBox="0 0 280 50"
+  width={width}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  role="img"
+  aria-label="Pitot Logic"
+>
+  <text x="0" y="38" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="34" letter-spacing="1.5" fill={color}>pitot</text>
+  <g transform="translate(128, 8)">
+    <path d="M0,0 L0,30 Q27,30 27,15 Q27,0 0,0 Z" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-12" y1="9"  x2="0" y2="9"  stroke={color} stroke-width="2" stroke-linecap="round"/>
+    <line x1="-12" y1="21" x2="0" y2="21" stroke={color} stroke-width="2" stroke-linecap="round"/>
+    <line x1="27"  y1="15" x2="40" y2="15" stroke={color} stroke-width="2" stroke-linecap="round"/>
+    <path d="M35,10 L42,15 L35,20" fill="none" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="184" y="38" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-weight="500" font-size="34" letter-spacing="1.5" fill={color}>logic</text>
+</svg>

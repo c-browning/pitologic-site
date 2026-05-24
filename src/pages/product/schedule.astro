@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
+import LifecycleRibbon from '../../components/marketing/LifecycleRibbon.astro';
+import WaitlistForm from '../../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Smart scheduling"
+  description="Runway's offset engine cascades dates downstream as predecessors shift. Every moved activity shows a chevron pointing at the driving predecessor — so the team can see why."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Pillar 03 · Smart scheduling</p>
+        <h1 class="display step-5">Dates cascade. The team sees why.</h1>
+        <p class="lede">
+          A schedule that doesn't propagate change is just a snapshot. Runway's offset engine
+          recalculates every downstream activity when a predecessor moves — and surfaces the
+          driving predecessor right on the timeline.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="ink" pad="tight">
+    <Container>
+      <header class="rib-head">
+        <p class="eyebrow">Eight phases. Phase-tagged entities.</p>
+        <h2 class="display step-3">The ORAT lifecycle, as a first-class object.</h2>
+      </header>
+      <LifecycleRibbon />
+      <p class="rib-note">Specs, equipment, training, procedures, and trials all carry an ORAT phase tag. Filter to today's phase. Roll up to the program. Pre-seeded from a project-type template on day one.</p>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <div class="row-list">
+        <article class="row-item">
+          <h3 class="row-title">Offset engine</h3>
+          <p>
+            Every link can carry an offset in calendar days or working days. When a predecessor's
+            date shifts, every downstream activity recalculates. No manual reschedules. No "what did
+            this slip impact?" guessing.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Driving predecessor</h3>
+          <p>
+            When an activity has multiple predecessors, the timeline shows a chevron pointing at the
+            one currently driving its start date. Click the chevron to navigate straight to it. The
+            team understands cascades visually, not from a PDF report.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Manual override + audit</h3>
+          <p>
+            Sometimes the engine is wrong. Set a manual date override and the chevron disappears.
+            The override is captured in the history — anyone can see who overrode the cascade and
+            why.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Phase-aware timeline</h3>
+          <p>
+            The Program Horizon strip groups activities by ORAT phase: Planning, Design Review,
+            Construction, Mobilization, Activation, Live Ops, Closeout. Stakeholders see "where are
+            we" at a glance, not "what bar is on what row."
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Excel import</h3>
+          <p>
+            Existing master programs come in as Excel. Runway imports them, maps columns, and
+            preserves your IDs so downstream systems keep working. Re-importing updates by ID,
+            doesn't duplicate.
+          </p>
+        </article>
+        <article class="row-item">
+          <h3 class="row-title">Zone readiness rollup</h3>
+          <p>
+            Every readiness activity links to one or more zones. The facility map renders each zone
+            with a readiness percentage rolled up from its linked activities. Hover for the
+            blockers. Click for the blade.
+          </p>
+        </article>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">See the cascade in action</p>
+        <h2 class="display step-3">Schedules that update themselves.</h2>
+        <WaitlistForm source="schedule" cta="Request a walkthrough" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .rib-head { display: flex; flex-direction: column; gap: var(--space-2xs); margin-bottom: var(--space-l); max-width: 50rem; }
+  .rib-note { margin-top: var(--space-m); font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.04em; color: rgba(244, 239, 230, 0.7); }
+  .row-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl) var(--space-l);
+  }
+  .row-item { display: flex; flex-direction: column; gap: var(--space-s); padding-top: var(--space-l); border-top: 1px solid var(--rule); }
+  .row-title { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; }
+  .row-item p { color: var(--ink-soft); }
+  @media (max-width: 900px) { .row-list { grid-template-columns: 1fr; } }
+  .cta { text-align: center; align-items: center; }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>

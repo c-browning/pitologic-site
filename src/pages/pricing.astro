@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import PricingCard from '../components/marketing/PricingCard.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+---
+<BaseLayout
+  title="Pricing"
+  description="Per-project pricing — not per seat. Bring your whole team, including consultants and contractors. Three tiers: Starter, Standard, and Enterprise."
+>
+  <Section tone="cream">
+    <Container width="narrow">
+      <header class="head stack-l">
+        <p class="eyebrow">Pricing</p>
+        <h1 class="display step-5">Per project. Not per seat.</h1>
+        <p class="lede">
+          ORAT involves consultants, contractors, agency reviewers, and the operator's team — often
+          dozens of people who touch the platform once a week. Charging per seat punishes you for
+          inviting them. We charge per project instead.
+        </p>
+      </header>
+    </Container>
+  </Section>
+
+  <Section tone="paper">
+    <Container>
+      <div class="grid">
+        <PricingCard
+          tier="Starter"
+          audience="Pilot projects"
+          price="$1,200"
+          priceUnit="/ project / month"
+          features={[
+            { text: 'Up to 25 users' },
+            { text: '100K AI tokens / month', hint: 'Project Assistant + spec ingestion' },
+            { text: 'Microsoft 365 SSO' },
+            { text: 'SharePoint document storage' },
+            { text: 'Standard support', hint: 'Email, business hours' },
+          ]}
+          cta="Join the waitlist"
+          href="/contact"
+        />
+        <PricingCard
+          tier="Standard"
+          audience="Active programs"
+          price="$3,500"
+          priceUnit="/ project / month"
+          highlight
+          features={[
+            { text: 'Up to 150 users' },
+            { text: '500K AI tokens / month', hint: 'Full document ingestion + library suggestions' },
+            { text: 'M365 SSO + External ID + Graph' },
+            { text: 'Per-functional-area Teams routing' },
+            { text: 'iCal feeds for every user' },
+            { text: 'Priority support', hint: '24-hour first response' },
+          ]}
+          cta="Join the waitlist"
+          href="/contact"
+        />
+        <PricingCard
+          tier="Enterprise"
+          audience="Multi-program portfolios"
+          price="Contact us"
+          priceUnit="custom terms"
+          features={[
+            { text: 'Unlimited users' },
+            { text: '2M+ AI tokens / month' },
+            { text: 'Custom Entra app setup', hint: 'Your tenant, your scopes' },
+            { text: 'Construction phase securability' },
+            { text: 'Dedicated CSM' },
+            { text: 'Volume discount on multi-project' },
+          ]}
+          cta="Get in touch"
+          href="/contact"
+        />
+      </div>
+      <p class="note">Prices are indicative for the v1 cohort and may evolve. Design-partner pricing available for the first ten customers.</p>
+    </Container>
+  </Section>
+
+  <Section tone="cream">
+    <Container width="narrow">
+      <div class="faq stack-l">
+        <h2 class="display step-3">Pricing questions</h2>
+        <div class="qa">
+          <p class="q">Why per-project instead of per-seat?</p>
+          <p class="a">An ORAT project naturally pulls in dozens of stakeholders who use the platform infrequently. Per-seat pricing creates the wrong incentive — teams keep people out to control cost, and then the platform isn't doing its job. We'd rather you invite the whole regulator.</p>
+        </div>
+        <div class="qa">
+          <p class="q">What counts as a project?</p>
+          <p class="a">A project is a tenant scope — one Runway workspace with one library, one schedule, and one team. A multi-phase program (terminal expansion + transit + BHS) can be one project with construction-phase scoping, or three projects, depending on how the team wants to operate.</p>
+        </div>
+        <div class="qa">
+          <p class="q">What happens when we exceed the AI token budget?</p>
+          <p class="a">Project Assistant pauses extraction for the rest of the month. The rest of Runway keeps working. You can buy a token top-up or upgrade the plan. We don't surprise-bill.</p>
+        </div>
+        <div class="qa">
+          <p class="q">Do you offer design-partner pricing?</p>
+          <p class="a">Yes — the first ten customers get reduced rates in exchange for biweekly product feedback. Tell us about your project on the contact page.</p>
+        </div>
+        <div class="qa">
+          <p class="q">Annual contracts?</p>
+          <p class="a">Available with a discount on Standard and Enterprise. Monthly billing is the default — we'd rather earn the renewal.</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="ink">
+    <Container width="narrow">
+      <div class="cta stack-l">
+        <p class="eyebrow">Ready to talk numbers?</p>
+        <h2 class="display step-3">Tell us about your project.</h2>
+        <WaitlistForm source="pricing" showMessage cta="Get a quote" />
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .step-5 { font-size: var(--step-5); }
+  .step-3 { font-size: var(--step-3); }
+  .head { max-width: 50rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-l);
+    align-items: stretch;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .note { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.04em; color: var(--ink-mute); margin-top: var(--space-xl); text-align: center; }
+
+  .faq { max-width: 50rem; }
+  .qa { display: flex; flex-direction: column; gap: var(--space-2xs); padding-block: var(--space-m); border-bottom: 1px solid var(--rule); }
+  .qa:last-child { border-bottom: 0; }
+  .q { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; color: var(--ink); }
+  .a { color: var(--ink-soft); line-height: 1.55; }
+
+  .cta { text-align: center; align-items: center; }
+  .cta .eyebrow { color: var(--accent-soft); }
+  .cta :global(.waitlist) { max-width: 28rem; margin-inline: auto; width: 100%; }
+</style>
